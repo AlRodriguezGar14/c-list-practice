@@ -6,12 +6,13 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/14 09:24:47 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:43:42 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+// #include <stdlib.h>
+// #include <stdio.h>
+#include "libft/libft.h"
 
 
 typedef struct s_node
@@ -54,7 +55,6 @@ t_node	*new_node(int value)
 	return (new);
 }
 
-// p -> pa, pb
 void	push(t_dll *bucket, int value)
 {
 	t_node	*node;
@@ -78,6 +78,23 @@ void	push(t_dll *bucket, int value)
 	bucket->len++;
 }
 
+void	pull(t_dll *bucket)
+{
+	bucket->head = bucket->head->next;
+	bucket->head->prev = bucket->tail;
+	bucket->tail->next = bucket->head;
+	bucket->len--;
+}
+
+// p -> pa, pb
+// send top of x to top of y
+void	push_to(t_dll *from, t_dll *to)
+{
+	push(to, from->head->value);
+	pull(from);
+}
+
+// to build the input
 void	append(t_dll *bucket, int value)
 {
 	t_node	*node;
@@ -101,15 +118,8 @@ void	append(t_dll *bucket, int value)
 	bucket->len++;
 }
 
-void	pull(t_dll *bucket)
-{
-	bucket->head = bucket->head->next;
-	bucket->head->prev = bucket->tail;
-	bucket->tail->next = bucket->head;
-	bucket->len--;
-}
-
 // s -> sa sb ss
+// swap top numbers
 void	swap(t_dll *bucket)
 {
 	int	tmp;
@@ -154,19 +164,31 @@ int	main(void)
 	idx = 0;
 	while (idx < 10 )
 	{
-		push(stack_a, idx);
-		append(stack_b, idx);
+		append(stack_a, idx);
 		idx++;
 	}
 	idx = 0;
 	// swap(stack_a);
 	// pull(stack_a);
 	// swap(stack_a);
+	push_to(stack_a, stack_b);
+	push_to(stack_a, stack_b);
+	push_to(stack_a, stack_b);
 	while (idx < stack_a->len)
 	{
-		printf("nbr a: %d |", stack_a->head->value);
+		// ft_printf("nbr a: %d |", stack_a->head->value);
+		// stack_a->head = stack_a->head->next;
+		// ft_printf("| nbr b: %d\n", stack_b->head->value);
+		// stack_b->head = stack_b->head->next;
+		ft_printf("nbr a: %d\n", stack_a->head->value);
 		stack_a->head = stack_a->head->next;
-		printf("| nbr b: %d\n", stack_b->head->value);
+		idx++;
+	}
+	ft_printf("\n=====\n");
+	idx = 0;
+	while (idx < stack_b->len)
+	{
+		ft_printf("nbr b: %d\n", stack_b->head->value);
 		stack_b->head = stack_b->head->next;
 		idx++;
 	}
