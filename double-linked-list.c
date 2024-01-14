@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/14 09:43:42 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/14 12:57:01 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,22 @@ void	push(t_dll *bucket, int value)
 
 void	pull(t_dll *bucket)
 {
+	if (!bucket || bucket->len == 0)
+		return ;
 	bucket->head = bucket->head->next;
 	bucket->head->prev = bucket->tail;
 	bucket->tail->next = bucket->head;
 	bucket->len--;
+	if (bucket->len <= 0)
+		bucket = NULL;
 }
 
 // p -> pa, pb
 // send top of x to top of y
 void	push_to(t_dll *from, t_dll *to)
 {
+	if (!from->head || !to)
+		return ;
 	push(to, from->head->value);
 	pull(from);
 }
@@ -149,6 +155,21 @@ void	swap(t_dll *bucket)
 // 		bucket->tail = tmp;
 // }
 
+// r -> ra, rb rr
+// Rotate from head to tail
+void	rotation(t_dll *bucket)
+{
+	t_node	*tmp;
+
+	if (bucket->len <= 1)
+		return ;
+	tmp = bucket->head;	
+	bucket->head =  tmp->next;
+	tmp->prev = bucket->tail;
+	tmp->prev->next = tmp;
+	bucket->tail = tmp;
+	tmp->next = bucket->head;
+}
 
 
 int	main(void)
@@ -171,21 +192,37 @@ int	main(void)
 	// swap(stack_a);
 	// pull(stack_a);
 	// swap(stack_a);
-	push_to(stack_a, stack_b);
-	push_to(stack_a, stack_b);
-	push_to(stack_a, stack_b);
+	// push_to(stack_a, stack_b);
+	// push_to(stack_a, stack_b);
+	// push_to(stack_a, stack_b);
+	// pull(stack_a);
+	// pull(stack_a);
+	// pull(stack_a);
+	// pull(stack_a);
+	// pull(stack_a);
+	// push(stack_a, 42);
 	while (idx < stack_a->len)
 	{
+		// pull(stack_a);
+		// append(stack_a, 2);
 		// ft_printf("nbr a: %d |", stack_a->head->value);
 		// stack_a->head = stack_a->head->next;
 		// ft_printf("| nbr b: %d\n", stack_b->head->value);
 		// stack_b->head = stack_b->head->next;
-		ft_printf("nbr a: %d\n", stack_a->head->value);
-		stack_a->head = stack_a->head->next;
+		// ft_printf("nbr a head: %d\n", stack_a->head->value);
+		// stack_a->head = stack_a->head->next;
 		idx++;
 	}
 	ft_printf("\n=====\n");
-	idx = 0;
+	push_to(stack_a, stack_b);
+	push_to(stack_a, stack_b);
+	push_to(stack_a, stack_b);
+	push_to(stack_a, stack_b);
+	push_to(stack_a, stack_b);
+	rotation(stack_b);
+	rotation(stack_b);
+	// rotation(stack_b);
+	idx = 0;	
 	while (idx < stack_b->len)
 	{
 		ft_printf("nbr b: %d\n", stack_b->head->value);
