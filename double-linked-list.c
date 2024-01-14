@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/14 03:32:32 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/14 04:12:43 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 typedef struct s_node
 {
-	void			*content;
+	int				value;
 	struct s_node	*next;
 	struct s_node	*prev;
 } t_node;
@@ -41,26 +41,26 @@ t_dll	*new_dll(void)
 	return (new);
 }
 
-t_node	*new_node(void *content)
+t_node	*new_node(int value)
 {
 	t_node	*new;
 
 	new = (t_node*)malloc(sizeof(t_node));
 	if (!new)
 		return (NULL);
-	new->content = content;
+	new->value = value;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
 }
 
-void	push(t_dll *bucket, void *content)
+int	push(t_dll *bucket, int value)
 {
 	t_node	*node;
 	t_node	*tmp;
-	if (!bucket || !content)
-		return ;
-	node = new_node(content);
+	if (!bucket || !value)
+		return (1);
+	node = new_node(value);
 	if (!bucket->head)
 	{
 		bucket->head = node;
@@ -74,26 +74,30 @@ void	push(t_dll *bucket, void *content)
 		bucket->head->next->prev = bucket->head;
 	}
 	bucket->len++;
+	return (0);
 }
 
 int	main(void)
 {
 	t_dll	*stack_a;
+	int		err;
+	int		idx;
 
 	stack_a = new_dll();
-	// printf("stack head: %s\n", (char*)stack_a->head->content);
-	// printf("stack tail: %s\n", (char*)stack_a->tail->content);
-	push(stack_a, "hola");
-	printf("pushed hola\n");
-	printf("stack head: %s\n", (char*)stack_a->head->content);
-	printf("stack tail: %s\n", (char*)stack_a->tail->content);
-	push(stack_a, "adios");
-	printf("pushed adios\n");
-	printf("stack head: %s\n", (char*)stack_a->head->content);
-	printf("stack tail: %s\n", (char*)stack_a->tail->content);
-	push(stack_a, "que tal");
-	printf("pushed que tal\n");
-	printf("stack head: %s\n", (char*)stack_a->head->content);
-	printf("stack tail: %s\n", (char*)stack_a->tail->content);
-	return (0);
+	if (!stack_a)
+		exit(EXIT_FAILURE);
+	idx = 1;
+	while (idx <= 10 )
+	{
+		err = push(stack_a, idx);
+		if (err)
+			exit(EXIT_FAILURE);
+		idx++;
+	}
+	while (stack_a->head)
+	{
+		printf("nbr %d\n", stack_a->head->value);
+		stack_a->head = stack_a->head->next;
+	}
+	return (EXIT_SUCCESS);
 }
