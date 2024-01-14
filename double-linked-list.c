@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/14 04:12:43 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/14 08:10:11 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,36 @@ int	push(t_dll *bucket, int value)
 	return (0);
 }
 
+// s -> sa sb ss
+void	swap(t_dll *bucket)
+{
+	int	tmp;
+
+	if (bucket->len < 2)
+		return ;
+	tmp = bucket->head->value;
+	bucket->head->value = bucket->head->next->value;
+	bucket->head->next->value = tmp;
+}
+// void swap(t_dll *bucket)
+// {
+// 	t_node *tmp;
+
+// 	if (bucket->len < 2)
+// 		return;
+
+// 	tmp = bucket->head;
+// 	bucket->head = bucket->head->next;
+// 	bucket->head->prev = NULL;
+// 	tmp->next = bucket->head->next;
+// 	tmp->prev = bucket->head;
+// 	bucket->head->next = tmp;
+// 	if (tmp->next)
+// 		tmp->next->prev = tmp;
+// 	if (bucket->tail == bucket->head)
+// 		bucket->tail = tmp;
+// }
+
 int	main(void)
 {
 	t_dll	*stack_a;
@@ -94,6 +124,7 @@ int	main(void)
 			exit(EXIT_FAILURE);
 		idx++;
 	}
+	swap(stack_a);
 	while (stack_a->head)
 	{
 		printf("nbr %d\n", stack_a->head->value);
