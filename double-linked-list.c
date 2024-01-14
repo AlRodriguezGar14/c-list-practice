@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/14 12:57:01 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/14 13:14:50 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,21 @@ void	rotation(t_dll *bucket)
 	tmp->next = bucket->head;
 }
 
+// rr -> rra, rrb, rrr
+// Rotate from tail to head
+void	reverse_rotation(t_dll *bucket)
+{
+	t_node	*tmp;
+
+	if (bucket->len <= 1)
+		return ;
+	tmp = bucket->tail;
+	bucket->tail = tmp->prev;
+	tmp->next = bucket->head;
+	tmp->next->prev = tmp;
+	bucket->head = tmp;
+	tmp->prev = bucket->tail;
+}
 
 int	main(void)
 {
@@ -221,6 +236,8 @@ int	main(void)
 	push_to(stack_a, stack_b);
 	rotation(stack_b);
 	rotation(stack_b);
+	reverse_rotation(stack_b);
+	reverse_rotation(stack_b);
 	// rotation(stack_b);
 	idx = 0;	
 	while (idx < stack_b->len)
