@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/14 09:11:14 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:24:47 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	push(t_dll *bucket, int value)
 {
 	t_node	*node;
 	t_node	*tmp;
+
 	if (!bucket)
 		return ;
 	node = new_node(value);
@@ -73,6 +74,29 @@ void	push(t_dll *bucket, int value)
 		bucket->head = node;
 		bucket->head->next = tmp;
 		bucket->head->next->prev = bucket->head;
+	}
+	bucket->len++;
+}
+
+void	append(t_dll *bucket, int value)
+{
+	t_node	*node;
+	t_node	*tmp;
+
+	if (!bucket)
+		return ;
+	node = new_node(value);
+	if (!bucket->tail)
+	{
+		bucket->tail = node;
+		bucket->head = node;
+	}
+	else
+	{
+		tmp = bucket->tail;
+		bucket->tail = node;
+		bucket->tail->prev = tmp;
+		bucket->tail->prev->next = bucket->tail;
 	}
 	bucket->len++;
 }
@@ -120,25 +144,30 @@ void	swap(t_dll *bucket)
 int	main(void)
 {
 	t_dll	*stack_a;
+	t_dll	*stack_b;
 	int		idx;
 
 	stack_a = new_dll();
+	stack_b = new_dll();
 	if (!stack_a)
 		exit(EXIT_FAILURE);
 	idx = 0;
-	while (idx <= 10 )
+	while (idx < 10 )
 	{
 		push(stack_a, idx);
+		append(stack_b, idx);
 		idx++;
 	}
 	idx = 0;
-	swap(stack_a);
-	pull(stack_a);
-	swap(stack_a);
+	// swap(stack_a);
+	// pull(stack_a);
+	// swap(stack_a);
 	while (idx < stack_a->len)
 	{
-		printf("nbr %d\n", stack_a->head->value);
+		printf("nbr a: %d |", stack_a->head->value);
 		stack_a->head = stack_a->head->next;
+		printf("| nbr b: %d\n", stack_b->head->value);
+		stack_b->head = stack_b->head->next;
 		idx++;
 	}
 	return (EXIT_SUCCESS);
