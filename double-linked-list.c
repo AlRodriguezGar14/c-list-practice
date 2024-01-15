@@ -80,12 +80,16 @@ void	push(t_dll *bucket, int value)
 
 void	pull(t_dll *bucket)
 {
+  t_node *curr;
+
 	if (!bucket || bucket->len == 0)
 		return ;
+  curr = bucket->head;
 	bucket->head = bucket->head->next;
 	bucket->head->prev = bucket->tail;
 	bucket->tail->next = bucket->head;
 	bucket->len--;
+  free(curr);
 	if (bucket->len <= 0)
 		bucket = NULL;
 }
@@ -246,5 +250,11 @@ int	main(void)
 		stack_b->head = stack_b->head->next;
 		idx++;
 	}
+  while (stack_a->len)
+    pull(stack_a);
+  while (stack_b->len)
+    pull(stack_b);
+  free(stack_a);
+  free(stack_b);
 	return (EXIT_SUCCESS);
 }
