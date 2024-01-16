@@ -6,12 +6,13 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/16 03:58:09 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/16 04:07:13 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdlib.h>
 // #include <stdio.h>
+#include <time.h>
 #include "libft/libft.h"
 
 
@@ -226,17 +227,20 @@ void	sort(t_dll *a)
 int main()
 {
 	t_dll	*a;
+	int		idx = 0;
 
 	a = new_dll();
-	append(a, 50);
-	append(a, 500);
-	append(a, 5);
-	append(a, 10);
-	append(a, 42);
-	append(a, 24);
-	append(a, 542);
+	while (idx++ < 500)
+		append(a, rand());
+	// append(a, 50);
+	// append(a, 500);
+	// append(a, 5);
+	// append(a, 10);
+	// append(a, 42);
+	// append(a, 24);
+	// append(a, 542);
 	sort(a);
-	int idx = 0;
+	idx = 0;
 	t_node *curr = a->head;
 	while (idx < a->len)
 	{
