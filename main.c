@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 05:21:00 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:14:34 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,44 @@ t_dll	*parse_input(int argc, char **argv)
 	return (stack);
 }
 
+int	*sort_input(t_dll stack)
+{
+	int		*out;
+	size_t	idx;
+	t_node	*curr;
+
+	out = (int *)malloc(stack.len * sizeof(int));
+	if (!out)	
+		return (NULL);
+	idx = 0;
+	curr = stack.head;
+	while (idx < stack.len)
+	{
+		out[idx++] = curr->value;
+		curr = curr->next;
+	}
+	quicksort(out, 0, (int)stack.len - 1);
+	return (out);	
+}
+
 int main(int argc, char **argv)
 {
 	t_dll	*stack_a;
+	int		*sorted_arr = NULL;
 
 	stack_a = parse_input(argc, argv);
+	sorted_arr = sort_input(*stack_a);
 	// pending when parse:
 	//		check that no number is duplicated
 	//		check that no chars are present in the input
 	// pending after parse:
-	// 		copy the content of stack_a to a integer array to sort it
+	// 		DONE: copy the content of stack_a to a integer array to sort it
 	//		map the indexes of the sorted array to the list
 
 	// test that the input has been properly parsed to the dll
 	size_t idx = 0;
-	t_node	*curr = stack_a->head;
 	while (idx < stack_a->len)
-	{
-		printf("%d, ", curr->value);
-		curr = curr->next;
-		idx++;
-	}
+		printf("%d, ", sorted_arr[idx++]);
 
 	return (0);
 }
