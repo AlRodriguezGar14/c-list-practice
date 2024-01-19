@@ -1,57 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heap_tools.c                                       :+:      :+:    :+:   */
+/*   stack_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:10:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/18 20:21:40 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/19 01:55:36 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <time.h>
-#include "libft/libft.h"
-
-typedef struct s_node
-{
-	int				value;
-	struct s_node	*next;
-	struct s_node	*prev;
-} t_node;
-
-typedef struct s_dll
-{
-	size_t			len;
-	struct s_node	*head;
-	struct s_node	*tail;
-} t_dll;
-
-t_dll	*new_dll(void)
-{
-	t_dll	*new;
-
-	new = (t_dll*)malloc(sizeof(t_dll));
-	if (!new)
-		return (NULL);
-	new->len = 0;
-	new->head = NULL;
-	new->tail = NULL;
-	return (new);
-}
-
-t_node	*new_node(int value)
-{
-	t_node	*new;
-
-	new = (t_node*)malloc(sizeof(t_node));
-	if (!new)
-		return (NULL);
-	new->value = value;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
+#include "push_swap.h"
 
 void	push(t_dll *bucket, int value)
 {

@@ -2,3 +2,5 @@
 *.out
 *.dSYM
 *.o
+*.a
+push_swap

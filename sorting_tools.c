@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dll_tools.c                                        :+:      :+:    :+:   */
+/*   sorting_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:22:34 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 01:47:08 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/19 02:00:02 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "push_swap.h"
 
-int	partitioner(int *arr, int lo, int hi)
+static int	partitioner(int *arr, int lo, int hi)
 {
 	int	idx;
 	int	pivot;
