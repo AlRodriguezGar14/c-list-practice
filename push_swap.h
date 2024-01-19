@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 01:59:16 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/19 05:19:18 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define PUSH_SWAP
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <time.h>
 # include "libft/libft.h"
 
 typedef struct s_node
 {
 	int				value;
+	unsigned int	final_idx;
 	struct s_node	*next;
 	struct s_node	*prev;
 } t_node;

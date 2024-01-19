@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:54:27 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 01:54:54 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/19 05:19:05 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_node	*new_node(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
+	new->final_idx = 0;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
