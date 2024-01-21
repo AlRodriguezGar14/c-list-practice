@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/21 13:50:10 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/21 17:18:46 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ typedef struct s_dll
 	struct s_node	*head;
 	struct s_node	*tail;
 } t_dll;
+
+
+// deal with the input
+t_dll	*parse_input(int argc, char **argv);
+int	*sort_input(t_dll stack);
 
 // stack builder
 t_dll	*new_dll(void);
