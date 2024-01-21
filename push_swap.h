@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 05:19:18 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/21 13:50:10 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_node
 
 typedef struct s_dll
 {
-	size_t			len;
+	int				len;
 	struct s_node	*head;
 	struct s_node	*tail;
 } t_dll;
@@ -42,7 +42,8 @@ void	push(t_dll *bucket, int value);
 void	pull(t_dll *bucket);
 void	append(t_dll *bucket, int value);
 
-
+// stack sort
+void quicksort_stack(t_dll *main_stack, t_dll *temp_stack);
 
 // allowed functions
 	// p -> pa, pb

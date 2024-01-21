@@ -6,12 +6,13 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:22:34 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 02:00:02 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/21 06:21:10 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Quicksort an array:
 static int	partitioner(int *arr, int lo, int hi)
 {
 	int	idx;
@@ -50,15 +51,3 @@ void	quicksort(int *arr, int lo, int hi)
 	quicksort(arr, lo, pivot_idx - 1);
 		
 }
-
-// int	main()
-// {
-// 	// 9 numbers
-// 	int	arr[] = {43, 56, 3, 8, 10, 2, 60, 20, 11};
-	
-// 	quicksort(arr, 0, 8);
-// 	int	idx = 0;
-// 	while (idx++ < 9)
-// 		printf("%d, ", arr[idx]);
-// 	return (0);	
-// }

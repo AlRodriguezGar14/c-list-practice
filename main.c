@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/19 10:14:34 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/21 17:05:24 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_dll	*parse_input(int argc, char **argv)
 int	*sort_input(t_dll stack)
 {
 	int		*out;
-	size_t	idx;
+	int		idx;
 	t_node	*curr;
 
 	out = (int *)malloc(stack.len * sizeof(int));
@@ -70,11 +70,43 @@ int	*sort_input(t_dll stack)
 	return (out);	
 }
 
+static int	find_value(int nbr, int *arr, int max_len)
+{
+    int	idx;
+
+    idx = 0;
+	while (idx < max_len)
+	{
+		if (arr[idx] == nbr) 
+			return (idx);
+		idx++;
+	}
+    return idx;
+}
+
+void	assign_idx(t_dll **stack, int *arr)
+{
+	int		idx;
+	t_node	*curr;
+
+	idx = 0;
+	curr = (*stack)->head;
+	while (idx < (*stack)->len)
+	{
+		curr->final_idx = find_value(curr->value, arr, (*stack)->len);
+		curr = curr->next;
+		idx++;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	t_dll	*stack_a;
+	// t_dll	*stack_b;
+	t_node 	*curr;
 	int		*sorted_arr = NULL;
 
+	// stack_b = new_dll();
 	stack_a = parse_input(argc, argv);
 	sorted_arr = sort_input(*stack_a);
 	// pending when parse:
@@ -82,12 +114,16 @@ int main(int argc, char **argv)
 	//		check that no chars are present in the input
 	// pending after parse:
 	// 		DONE: copy the content of stack_a to a integer array to sort it
-	//		map the indexes of the sorted array to the list
+	//		DONE: map the indexes of the sorted array to the list
 
 	// test that the input has been properly parsed to the dll
-	size_t idx = 0;
-	while (idx < stack_a->len)
-		printf("%d, ", sorted_arr[idx++]);
-
+	assign_idx(&stack_a, sorted_arr);
+	int idx = 0;
+	curr = stack_a->head;
+	while (idx++ < stack_a->len)
+	{
+		printf("%d - %d\n", curr->final_idx, curr->value);
+		curr = curr->next;
+	}
 	return (0);
 }
