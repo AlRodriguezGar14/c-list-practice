@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/21 17:26:43 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:26:04 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int main(int argc, char **argv)
 	sorted_arr = sort_input(*stack_a);
 	// pending when parse:
 	//		DONE: check that no number is duplicated
-	//		check that no chars are present in the input
+	//		DONE: check that no chars are present in the input
+	//		DONE: check only "" or spaces are used as separator
 	// pending after parse:
 	// 		DONE: copy the content of stack_a to a integer array to sort it
 	//		DONE: map the indexes of the sorted array to the list

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/21 17:18:46 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:54:55 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_dll
 // deal with the input
 t_dll	*parse_input(int argc, char **argv);
 int	*sort_input(t_dll stack);
+int	push_swap_atoi(const char *str);
 
 // stack builder
 t_dll	*new_dll(void);
