@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:10:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 02:27:09 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:44:03by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ void	pull(t_dll *bucket)
 
 // p -> pa, pb
 // send top of x to top of y
-void	push_to(t_dll *from, t_dll *to)
+void	push_to(t_dll *from, t_dll *to, char *action)
 {
 	if (!from->head || !to)
 		return ;
 	push(to, from->head->value);
 	pull(from);
+	ft_printf("%s\n", action);
 }
 
 // to build the input
@@ -87,7 +88,7 @@ void	append(t_dll *bucket, int value)
 
 // s -> sa sb ss
 // swap top numbers
-void	swap(t_dll *bucket)
+void	swap(t_dll *bucket, char *action)
 {
 	int	tmp;
 
@@ -96,11 +97,12 @@ void	swap(t_dll *bucket)
 	tmp = bucket->head->value;
 	bucket->head->value = bucket->head->next->value;
 	bucket->head->next->value = tmp;
+	ft_printf("%s\n", action);
 }
 
 // r -> ra, rb rr
 // Rotate from head to tail
-void	rotation(t_dll *bucket)
+void	rotation(t_dll *bucket, char *action)
 {
 	t_node	*tmp;
 
@@ -112,20 +114,25 @@ void	rotation(t_dll *bucket)
 	tmp->prev->next = tmp;
 	bucket->tail = tmp;
 	tmp->next = bucket->head;
+	ft_printf("%s\n", action);
 }
 
 // rr -> rra, rrb, rrr
 // Rotate from tail to head
-void	reverse_rotation(t_dll *bucket)
+void reverse_rotation(t_dll *bucket, char *action)
 {
-	t_node	*tmp;
+    t_node *tmp;
 
-	if (bucket->len <= 1)
-		return ;
-	tmp = bucket->tail;
-	bucket->tail = tmp->prev;
-	tmp->next = bucket->head;
-	tmp->next->prev = tmp;
-	bucket->head = tmp;
-	tmp->prev = bucket->tail;
+    if (bucket->len <= 1)
+        return ;
+
+    tmp = bucket->tail;
+    bucket->tail = tmp->prev;
+    bucket->tail->next = bucket->head;
+    tmp->prev = bucket->tail;
+    tmp->next = bucket->head;
+    bucket->head->prev = tmp;
+    bucket->head = tmp;
+
+    ft_printf("%s\n", action);
 }

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 02:46:18 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:48:21 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	assign_idx(t_dll **stack, int *arr)
 
 	idx = 0;
 	curr = (*stack)->head;
-	while (idx < (*stack)->len)
+	while (idx < (*stack)->len - 1)
 	{
 		curr->final_idx = find_value(curr->value, arr, (*stack)->len);
 		curr = curr->next;
@@ -45,7 +45,6 @@ int main(int argc, char **argv)
 {
 	t_dll	*stack_a;
 	// t_dll	*stack_b;
-	t_node 	*curr;
 	int		*sorted_arr = NULL;
 
 	// stack_b = new_dll();
@@ -61,12 +60,17 @@ int main(int argc, char **argv)
 
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
-	sort_three(&stack_a);
-	int idx = 0;
+	if (is_sorted(stack_a))
+		return (0);
+	sort_three(&stack_a, sorted_arr);
+	if (is_sorted(stack_a))
+		ft_printf("Now it is sorted\n");
+	t_node 	*curr;
+	int idx = -1;
 	curr = stack_a->head;
-	while (idx++ < stack_a->len)
+	while (++idx < stack_a->len)
 	{
-		printf(" %d ", curr->value);
+		printf("value:  %d  idx: %d\n", curr->value, curr->final_idx);
 		curr = curr->next;
 	}
 	printf("len: %d\n", stack_a->len);

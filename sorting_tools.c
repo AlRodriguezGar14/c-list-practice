@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:22:34 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/21 06:21:10 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:32:39 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,19 @@ void	quicksort(int *arr, int lo, int hi)
 	quicksort(arr, pivot_idx + 1, hi);
 	quicksort(arr, lo, pivot_idx - 1);
 		
+}
+
+int	is_sorted(t_dll *stack)
+{
+	int	idx;
+
+	t_node *curr = stack->head;
+	idx = -1;
+	while (++idx < stack->len - 1)
+	{
+		if (curr->value >= curr->next->value)	
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
 }

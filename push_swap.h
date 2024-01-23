@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 02:37:24 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:50:11 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,25 @@ void	append(t_dll *bucket, int value);
 
 // stack sort
 void quicksort_stack(t_dll *main_stack, t_dll *temp_stack);
+void	sort_three(t_dll **a, int *sorted);
+void	assign_idx(t_dll **stack, int *arr);
 
 // allowed functions
 	// p -> pa, pb
 	// send top of x to top of y
-void	push_to(t_dll *from, t_dll *to);
+void	push_to(t_dll *from, t_dll *to, char *action);
 	// s -> sa sb ss
 	// swap top numbers
-void	swap(t_dll *bucket);
+void	swap(t_dll *bucket, char *action);
 	// r -> ra, rb rr
 	// Rotate from head to tail
-void	rotation(t_dll *bucket);
+void	rotation(t_dll *bucket, char *action);
 	// rr -> rra, rrb, rrr
 	// Rotate from tail to head
-void	reverse_rotation(t_dll *bucket);
+void	reverse_rotation(t_dll *bucket, char *action);
 
-// sorting
+// sorting tools
 void	quicksort(int *arr, int lo, int hi);
-void	sort_three(t_dll **a);
+int	is_sorted(t_dll *inp);
 
 #endif

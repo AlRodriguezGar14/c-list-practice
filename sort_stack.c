@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 01:52:22 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 02:38:01 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:50:53 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static	t_node	*find_biggest(t_dll *a)
 	idx = -1;
 	curr = a->head;
 	biggest_val = a->head;
-	while (++idx < a->len)
+	while (++idx < a->len - 1)
 	{
 		if (curr->final_idx > biggest_val->final_idx)
 			biggest_val = curr;
@@ -30,24 +30,17 @@ static	t_node	*find_biggest(t_dll *a)
 	return (biggest_val);
 }
 
-void	sort_three(t_dll **a)
+void	sort_three(t_dll **a, int *sorted)
 {
 	t_node	*biggest_node;
 	
 	biggest_node = find_biggest(*a);
 	if (biggest_node->final_idx == (*a)->head->final_idx)
-	{
-		rotation(*a);
-		ft_printf("ra\n");
-	}
+		rotation(*a, "ra");
 	else if (biggest_node->final_idx == (*a)->head->next->final_idx)
-	{
-		reverse_rotation(*a);
-		ft_printf("rra\n");
-	}
+		reverse_rotation(*a, "rra");
+	assign_idx(a, sorted);
 	if ((*a)->head->final_idx > (*a)->head->next->final_idx)
-	{
-		swap(*a);
-		ft_printf("sa\n");
-	}
+		swap(*a, "sa");
+	assign_idx(a, sorted);
 }
