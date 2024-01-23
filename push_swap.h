@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 15:04:27 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:16:40 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,22 @@ t_dll	*new_dll(void);
 t_node	*new_node(int value);
 
 // stack tools
-void	push(t_dll *bucket, int value);
-void	pull(t_dll *bucket);
+// void	push(t_dll *bucket, int value);
+void	push(t_dll *bucket, t_node *node);
+// void	pull(t_dll *bucket);
+t_node *pull(t_dll *bucket);
 void	append(t_dll *bucket, int value);
 
 // stack sort
 void quicksort_stack(t_dll *main_stack, t_dll *temp_stack);
 void	sort_three(t_dll **a);
 void	assign_idx(t_dll **stack, int *arr);
+void sort_stack(t_dll **a, t_dll **b, int *sorted_arr);
 
 // allowed functions
 	// p -> pa, pb
 	// send top of x to top of y
+// void	push_to(t_dll *from, t_dll *to, char *action);
 void	push_to(t_dll *from, t_dll *to, char *action);
 	// s -> sa sb ss
 	// swap top numbers

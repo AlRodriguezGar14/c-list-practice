@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 15:04:39 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:02:48 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	assign_idx(t_dll **stack, int *arr)
 int main(int argc, char **argv)
 {
 	t_dll	*stack_a;
-	// t_dll	*stack_b;
+	t_dll	*stack_b;
 	int		*sorted_arr = NULL;
 
-	// stack_b = new_dll();
+	stack_b = new_dll();
 	stack_a = parse_input(argc, argv);
 	sorted_arr = sort_input(*stack_a);
 	// pending when parse:
@@ -60,9 +60,10 @@ int main(int argc, char **argv)
 
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
-	if (is_sorted(stack_a))
-		return (0);
-	sort_three(&stack_a);
+	if (!is_sorted(stack_a))
+		ft_printf("NOT sorted\n");
+	// while (!is_sorted(stack_a))
+	sort_stack(&stack_a, &stack_b, sorted_arr);
 	if (is_sorted(stack_a))
 		ft_printf("Now it is sorted\n");
 	t_node 	*curr;
