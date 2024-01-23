@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 16:02:48 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:49:03 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,20 @@ int main(int argc, char **argv)
 
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
-	if (!is_sorted(stack_a))
-		ft_printf("NOT sorted\n");
-	// while (!is_sorted(stack_a))
-	sort_stack(&stack_a, &stack_b, sorted_arr);
 	if (is_sorted(stack_a))
-		ft_printf("Now it is sorted\n");
-	t_node 	*curr;
-	int idx = -1;
-	curr = stack_a->head;
-	while (++idx < stack_a->len)
-	{
-		printf("value:  %d  idx: %d\n", curr->value, curr->final_idx);
-		curr = curr->next;
-	}
-	printf("len: %d\n", stack_a->len);
+		return (0);
+	radix_sort(&stack_a, &stack_b);
+	if (is_sorted(stack_a))
+		printf("SORTED\n");
+
+	// t_node 	*curr;
+	// int idx = -1;
+	// curr = stack_a->head;
+	// while (++idx < stack_a->len)
+	// {
+	// 	printf("value:  %d  idx: %d\n", curr->value, curr->final_idx);
+	// 	curr = curr->next;
+	// }
+	// printf("len: %d\n", stack_a->len);
 	return (0);
 }

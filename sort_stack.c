@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 01:52:22 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 16:17:20 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:39:07y alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,80 @@ void	sort_three(t_dll **a)
         swap(*a, "sa");
 }
 
-void sort_stack(t_dll **a, t_dll **b, int *sorted_arr)
+// void sort_stack(t_dll **a, t_dll **b)
+// {
+//     t_node *biggest_node;
+
+//     // Move all but the three largest nodes from stack a to stack b
+//     while ((*a)->len > 3)
+//     {
+//         biggest_node = find_biggest(*a);
+//         while ((*a)->head != biggest_node)
+//             rotation(*a, "ra");
+//         push_to(*a, *b, "pb");
+//     }
+
+//     // Sort the remaining three nodes in stack a
+//     sort_three(a);
+
+//     // Move all nodes back from stack b to stack a
+//     while ((*b)->len > 0)
+//     {
+//         biggest_node = find_biggest(*b);
+//         while ((*b)->head != biggest_node)
+//             rotation(*b, "rb");
+//         push_to(*b, *a, "pa");
+//         biggest_node = find_biggest(*a);
+//         while ((*a)->head != biggest_node)
+//             rotation(*a, "ra");
+//     }
+// }
+
+static int get_max_bits(t_dll **stack)
 {
-	(void)sorted_arr;
-    while ((*a) && (*a)->len > 3)
+    t_node *head;
+    int max;
+    int max_bits;
+
+    head = (*stack)->head;
+    max = head->value;
+    max_bits = 0;
+    while (head)
     {
-        push_to(*a, *b, "pb");
+        if (head->value > max)
+            max = head->value;
+        head = head->next;
     }
-    sort_three(a);
-	// assign_idx(a, sorted_arr);
-	// assign_idx(b, sorted_arr);
-    while ((*b) && (*b)->len > 0)
-    {
-        push_to(*b, *a, "pa");
-    }
-	// assign_idx(a, sorted_arr);
-	// assign_idx(b, sorted_arr);
+    while ((max >> max_bits) != 0)
+        max_bits++;
+    return max_bits;
 }
 
-// TODO:
-// Fix the push_to and reverse rotation functions. They are not
-// moving the indexes
+void radix_sort(t_dll **stack_a, t_dll **stack_b)
+{
+    t_node *head_a;
+    int i;
+    int j;
+    int size;
+    int max_bits;
+
+    i = 0;
+    head_a = (*stack_a)->head;
+    size = (*stack_a)->len;
+    max_bits = get_max_bits(stack_a);
+    while (i < max_bits)
+    {
+        j = 0;
+        while (j++ < size)
+        {
+            head_a = (*stack_a)->head;
+            if (((head_a->value >> i) & 1) == 1)
+                rotation(*stack_a, "ra");
+            else
+                push_to(*stack_a, *stack_b, "pb");
+        }
+        while ((*stack_b)->len != 0)
+            push_to(*stack_b, *stack_a, "pa");
+        i++;
+    }
+}
