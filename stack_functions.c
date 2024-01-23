@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:10:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 13:44:03by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:42:56by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,25 @@ void	append(t_dll *bucket, int value)
 
 // s -> sa sb ss
 // swap top numbers
-void	swap(t_dll *bucket, char *action)
+void swap(t_dll *bucket, char *action)
 {
-	int	tmp;
+    t_node *tmp;
 
-	if (bucket->len < 2)
-		return ;
-	tmp = bucket->head->value;
-	bucket->head->value = bucket->head->next->value;
-	bucket->head->next->value = tmp;
-	ft_printf("%s\n", action);
+    if (bucket->len < 2)
+        return ;
+
+    tmp = bucket->head;
+    bucket->head = bucket->head->next;
+    bucket->head->prev = tmp->prev;
+    tmp->next = bucket->head->next;
+    bucket->head->next = tmp;
+    tmp->prev = bucket->head;
+    if (tmp->next != NULL)
+        tmp->next->prev = tmp;
+    if (bucket->tail == tmp)
+        bucket->tail = bucket->head;
+
+    ft_printf("%s\n", action);
 }
 
 // r -> ra, rb rr
@@ -119,7 +128,7 @@ void	rotation(t_dll *bucket, char *action)
 
 // rr -> rra, rrb, rrr
 // Rotate from tail to head
-void reverse_rotation(t_dll *bucket, char *action)
+void	reverse_rotation(t_dll *bucket, char *action)
 {
     t_node *tmp;
 

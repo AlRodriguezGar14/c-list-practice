@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 13:50:11 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:04:27 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	append(t_dll *bucket, int value);
 
 // stack sort
 void quicksort_stack(t_dll *main_stack, t_dll *temp_stack);
-void	sort_three(t_dll **a, int *sorted);
+void	sort_three(t_dll **a);
 void	assign_idx(t_dll **stack, int *arr);
 
 // allowed functions

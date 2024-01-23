@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 13:48:21 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:04:39 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	assign_idx(t_dll **stack, int *arr)
 
 	idx = 0;
 	curr = (*stack)->head;
-	while (idx < (*stack)->len - 1)
+	while (idx < (*stack)->len)
 	{
 		curr->final_idx = find_value(curr->value, arr, (*stack)->len);
 		curr = curr->next;
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 	assign_idx(&stack_a, sorted_arr);
 	if (is_sorted(stack_a))
 		return (0);
-	sort_three(&stack_a, sorted_arr);
+	sort_three(&stack_a);
 	if (is_sorted(stack_a))
 		ft_printf("Now it is sorted\n");
 	t_node 	*curr;

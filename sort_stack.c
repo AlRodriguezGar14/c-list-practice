@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 01:52:22 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 13:50:53 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:03:56 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ static	t_node	*find_biggest(t_dll *a)
 	return (biggest_val);
 }
 
-void	sort_three(t_dll **a, int *sorted)
+void	sort_three(t_dll **a)
 {
 	t_node	*biggest_node;
-	
+
 	biggest_node = find_biggest(*a);
-	if (biggest_node->final_idx == (*a)->head->final_idx)
+	if (biggest_node->value == (*a)->head->value)
 		rotation(*a, "ra");
-	else if (biggest_node->final_idx == (*a)->head->next->final_idx)
+	else if (biggest_node->value == (*a)->head->next->value)
 		reverse_rotation(*a, "rra");
-	assign_idx(a, sorted);
-	if ((*a)->head->final_idx > (*a)->head->next->final_idx)
+	if ((*a)->head->value > (*a)->head->next->value)
 		swap(*a, "sa");
-	assign_idx(a, sorted);
+	
 }
