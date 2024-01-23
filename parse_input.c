@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:10:33 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/22 14:27:31 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:49:11by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,10 @@ int	*sort_input(t_dll stack)
 int	push_swap_atoi(const char *str)
 {
 	int		operator;
+	char	*og;
 	long	output;
 
+	og = ft_strdup(str);
 	while ((*str >= 9 && *str <= 13) || *str == ' ')
 		str++;
 	operator = 1;
@@ -121,13 +123,18 @@ int	push_swap_atoi(const char *str)
 	output = 0;
 	if (!ft_isdigit(*str))
 	{
-		ft_printf("Wrong input format or non-numeric input: %s\n", str);
+		ft_printf("Wrong input format or non-numeric input: %s\n", og);
 		exit(1);
 	}
 	while (ft_isdigit(*str))
 	{
 		output = output * 10 + (*str - '0');
 		str++;
+	}
+	if (*str != '\0')
+	{
+		ft_printf("Wrong input format or non-numeric input: %s\n", og);
+		exit(1);
 	}
 	return (output * operator);
 }
