@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/22 14:26:04 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 02:46:18 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ int main(int argc, char **argv)
 
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
+	sort_three(&stack_a);
 	int idx = 0;
 	curr = stack_a->head;
 	while (idx++ < stack_a->len)
 	{
-		printf("%d - %d\n", curr->final_idx, curr->value);
+		printf(" %d ", curr->value);
 		curr = curr->next;
 	}
+	printf("len: %d\n", stack_a->len);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/22 13:54:55 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/23 02:37:24 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	reverse_rotation(t_dll *bucket);
 
 // sorting
 void	quicksort(int *arr, int lo, int hi);
+void	sort_three(t_dll **a);
 
 #endif
