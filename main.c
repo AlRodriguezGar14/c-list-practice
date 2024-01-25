@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 17:49:03 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:52:34 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int main(int argc, char **argv)
 	if (is_sorted(stack_a))
 		return (0);
 	radix_sort(&stack_a, &stack_b);
-	if (is_sorted(stack_a))
-		printf("SORTED\n");
+	/* if (is_sorted(stack_a)) */
+	/* 	printf("SORTED\n"); */
 
 	// t_node 	*curr;
 	// int idx = -1;

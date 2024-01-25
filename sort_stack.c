@@ -73,17 +73,17 @@ void	sort_three(t_dll **a)
 // }
 
 // The biggest number in the stack
-static int find_max(t_dll **stack)
+static unsigned int find_max(t_dll **stack)
 {
     t_node *curr;
-    int max;
+    unsigned int max;
 
     curr = (*stack)->head;
-    max = curr->value;
+    max = curr->final_idx;
     while (curr)
     {
-        if (curr->value > max)
-            max = curr->value;
+        if (curr->final_idx > max)
+            max = curr->final_idx;
         curr = curr->next;
     }
     return max;
@@ -99,10 +99,10 @@ static int find_max(t_dll **stack)
 // Iteration 4: max >> 3 (right shift by 3) is 0001, not equal to 0.
 // Iteration 5: max >> 4 (right shift by 4) is 0000, equal to 0. Exit the loop.
 // In this example, max_bits becomes 4, indicating that 4 bits are needed to represent the maximum value 12 in binary.
-static int get_max_bits(t_dll **stack)
+static unsigned int get_max_bits(t_dll **stack)
 {
-    int max;
-    int max_bits;
+    unsigned int max;
+    unsigned int max_bits;
 
     max = find_max(stack);
     max_bits = 0;
@@ -138,7 +138,7 @@ static void sort_on_bit(t_dll **stack_a, t_dll **stack_b, int bit)
         // as if we were separating between odd and even numbers.
         // When we perform radix sort on a set of numbers, we start from the least significant bit (the rightmost bit) 
         // and move towards the most significant bit (the leftmost bit).
-        if (((head_a->value >> bit) & 1) == 1)
+        if (((head_a->final_idx >> bit) & 1) == 1)
             rotation(*stack_a, "ra");  // 'ra' stands for rotate stack_a
         else
             push_to(*stack_a, *stack_b, "pb");  // 'pb' stands for push to stack_b
