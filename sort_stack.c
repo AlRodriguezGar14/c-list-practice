@@ -43,6 +43,7 @@ void	sort_three(t_dll **a)
         swap(*a, "sa");
 }
 
+
 // void sort_stack(t_dll **a, t_dll **b)
 // {
 //     t_node *biggest_node;
@@ -76,15 +77,18 @@ void	sort_three(t_dll **a)
 static unsigned int find_max(t_dll **stack)
 {
     t_node *curr;
-    unsigned int max;
+    unsigned int    max;
+    int    idx;
 
     curr = (*stack)->head;
     max = curr->final_idx;
-    while (curr)
+    idx = 0;
+    while (idx < (*stack)->len)
     {
         if (curr->final_idx > max)
             max = curr->final_idx;
         curr = curr->next;
+        idx++;
     }
     return max;
 }
@@ -152,6 +156,20 @@ static void move_back_to_a(t_dll **stack_a, t_dll **stack_b)
         push_to(*stack_b, *stack_a, "pa");
 }
 
+void    sort_five(t_dll **a, t_dll **b)
+{
+    while ((*a)->len != 3)
+        push_to(*a, *b, "pb");
+    sort_three(a);
+    if ((*b)->head->value < (*b)->head->next->value)
+        swap(*b, "sb");
+    while ((*b)->len != 0)
+    {
+        push_to(*b, *a, "pa");
+        if ((*a)->head->value > (*a)->head->next->value)
+            swap(*a, "sa");
+    }
+}
 // LSD sort; from the least significant bit to the most (max_bits - 1)
 // Explaination of how this sorting is possible:
 // https://www.youtube.com/watch?v=Uey0-GOMtT8
@@ -169,7 +187,7 @@ void radix_sort(t_dll **stack_a, t_dll **stack_b)
     
     idx = -1;
     max_bits = get_max_bits(stack_a);
-    while (++idx < max_bits)
+    while (++idx < max_bits && idx < 100)
     {
         sort_on_bit(stack_a, stack_b, idx);
         move_back_to_a(stack_a, stack_b);

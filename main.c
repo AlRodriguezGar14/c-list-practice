@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/25 18:13:05 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:06:58 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int main(int argc, char **argv)
 
 	if (stack_a->len == 3)
 		sort_three(&stack_a);
+	if (stack_a->len == 5)
+		sort_five(&stack_a, &stack_b);
 	
 	// pending when parse:
 	//		DONE: check that no number is duplicated
@@ -68,8 +70,6 @@ int main(int argc, char **argv)
 	// 	return (0);
 	while (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
-	/* if (is_sorted(stack_a)) */
-	/* 	printf("SORTED\n"); */
 
 	// t_node 	*curr;
 	// int idx = -1;
