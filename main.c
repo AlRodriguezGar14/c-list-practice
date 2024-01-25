@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/25 20:06:58 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:17:51 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int main(int argc, char **argv)
 
 	if (stack_a->len == 3)
 		sort_three(&stack_a);
-	if (stack_a->len == 5)
-		sort_five(&stack_a, &stack_b);
 	
 	// pending when parse:
 	//		DONE: check that no number is duplicated
@@ -66,6 +64,11 @@ int main(int argc, char **argv)
 
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
+	if (stack_a->len == 5)
+	{
+		sort_five(&stack_a, &stack_b);
+		return 1;
+	}
 	// if (is_sorted(stack_a))
 	// 	return (0);
 	while (!is_sorted(stack_a))

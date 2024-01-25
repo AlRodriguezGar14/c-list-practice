@@ -158,17 +158,35 @@ static void move_back_to_a(t_dll **stack_a, t_dll **stack_b)
 
 void    sort_five(t_dll **a, t_dll **b)
 {
-    while ((*a)->len != 3)
-        push_to(*a, *b, "pb");
-    sort_three(a);
-    if ((*b)->head->value < (*b)->head->next->value)
-        swap(*b, "sb");
-    while ((*b)->len != 0)
+    int moved_b = 0;
+    while ((*a)->head->final_idx != 0)
     {
-        push_to(*b, *a, "pa");
-        if ((*a)->head->value > (*a)->head->next->value)
-            swap(*a, "sa");
+        rotation(*a, "ra");
+        if ((*a)->head->final_idx == 1)
+        {
+            push_to(*a, *b, "pb");
+            moved_b = 1;
+        }
     }
+    push_to(*a, *b, "pb");
+    if (moved_b == 0)
+    {
+        while ((*a)->head->final_idx != 1)
+            rotation(*a, "ra");
+        push_to(*a, *b, "pb");
+    }
+    // while ((*a)->len != 3)
+    //     push_to(*a, *b, "pb");
+    sort_three(a);
+    move_back_to_a(a, b);
+    // if ((*b)->head->value < (*b)->head->next->value)
+    //     swap(*b, "sb");
+    // while ((*b)->len != 0)
+    // {
+    //     push_to(*b, *a, "pa");
+    //     if ((*a)->head->value > (*a)->head->next->value)
+    //         swap(*a, "sa");
+    // }
 }
 // LSD sort; from the least significant bit to the most (max_bits - 1)
 // Explaination of how this sorting is possible:
