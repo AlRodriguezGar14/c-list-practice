@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/25 15:52:34 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:13:05 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ int main(int argc, char **argv)
 	stack_b = new_dll();
 	stack_a = parse_input(argc, argv);
 	sorted_arr = sort_input(*stack_a);
+
+	if (stack_a->len == 3)
+		sort_three(&stack_a);
+	
 	// pending when parse:
 	//		DONE: check that no number is duplicated
 	//		DONE: check that no chars are present in the input
@@ -60,9 +64,10 @@ int main(int argc, char **argv)
 
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
-	if (is_sorted(stack_a))
-		return (0);
-	radix_sort(&stack_a, &stack_b);
+	// if (is_sorted(stack_a))
+	// 	return (0);
+	while (!is_sorted(stack_a))
+		radix_sort(&stack_a, &stack_b);
 	/* if (is_sorted(stack_a)) */
 	/* 	printf("SORTED\n"); */
 

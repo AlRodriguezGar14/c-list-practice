@@ -173,6 +173,8 @@ void radix_sort(t_dll **stack_a, t_dll **stack_b)
     {
         sort_on_bit(stack_a, stack_b, idx);
         move_back_to_a(stack_a, stack_b);
+        if (is_sorted(*stack_a))
+            break ;
     }
 }
 
