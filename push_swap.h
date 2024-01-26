@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 06:52:49 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 07:20:10 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,19 @@ void	append(t_dll *bucket, int value);
 
 // stack sort
 void quicksort_stack(t_dll *main_stack, t_dll *temp_stack);
-void	sort_three(t_dll **a);
 void	assign_idx(t_dll **stack, int *arr);
-void    sort_five(t_dll **a, t_dll **b);
-// void sort_stack(t_dll **a, t_dll **b);
 
+void	sort_three(t_dll **a);
+void    sort_five(t_dll **a, t_dll **b);
 void    radix_sort(t_dll **a, t_dll **b);
+
+// stack sort utils
+t_node	*find_biggest(t_dll *a);
+unsigned int find_max(t_dll **stack);
+unsigned int get_max_bits(t_dll **stack);
+void sort_on_bit(t_dll **stack_a, t_dll **stack_b, int bit);
+void move_back_to_a(t_dll **stack_a, t_dll **stack_b);
+
 
 // allowed functions
 	// p -> pa, pb
