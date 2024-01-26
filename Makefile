@@ -13,7 +13,7 @@
 
 CC       = cc
 HEADERS_DIR = .
-CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address -I $(HEADERS_DIR) -I $(LIBFT)
+CFLAGS   = -Wall -Wextra -Werror -g3 -I $(HEADERS_DIR) -I $(LIBFT_DIR)
 NAME     = push_swap
 RM       = rm -rf
 
@@ -43,5 +43,44 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: all clean fclean re
+
+test3: $(NAME)
+	@NUM=3; \
+	ARG="$$(for i in $$(seq $$NUM); do echo -n $$((RANDOM))" "; done)"; \
+	echo "ARG: $$ARG"; \
+	./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker_linux $$ARG
+test5: $(NAME)
+	@NUM=5; \
+	ARG="$$(for i in $$(seq $$NUM); do echo -n $$((RANDOM))" "; done)"; \
+	echo "ARG: $$ARG"; \
+	./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker_linux $$ARG
+test100: $(NAME)
+	@NUM=100; \
+	ARG=(); \
+	for i in $$(seq $$NUM); do \
+		rand=$$((RANDOM)); \
+		while echo "$${ARG[@]}" | grep -q -w $$rand; do \
+			rand=$$((RANDOM)); \
+		done; \
+		ARG+=($$rand); \
+	done; \
+	ARG="$${ARG[*]}"; \
+	echo "ARG: $$ARG"; \
+	./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker_linux $$ARG
+test500: $(NAME)
+	@NUM=500; \
+	ARG=(); \
+	for i in $$(seq $$NUM); do \
+		rand=$$((RANDOM)); \
+		while echo "$${ARG[@]}" | grep -q -w $$rand; do \
+			rand=$$((RANDOM)); \
+		done; \
+		ARG+=($$rand); \
+	done; \
+	ARG="$${ARG[*]}"; \
+	echo "ARG: $$ARG"; \
+	./push_swap $$ARG | wc -l && ./push_swap $$ARG | ./checker_linux $$ARG
+
+
+.PHONY: all clean fclean re test3 test5 test100 test500
  
