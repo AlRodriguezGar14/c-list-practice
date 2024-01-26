@@ -21,9 +21,9 @@ static	t_node	*find_biggest(t_dll *a)
     idx = -1;
     curr = a->head;
     biggest_val = a->head;
-    while (++idx < a->len - 1)
+    while (++idx < a->len)
     {
-        if (curr->value > biggest_val->value) // Compare values, not final_idx
+        if (curr->final_idx > biggest_val->final_idx) 
             biggest_val = curr;
         curr = curr->next;
     }
@@ -175,18 +175,10 @@ void    sort_five(t_dll **a, t_dll **b)
             rotation(*a, "ra");
         push_to(*a, *b, "pb");
     }
-    // while ((*a)->len != 3)
-    //     push_to(*a, *b, "pb");
+    if ((*b)->head->final_idx < (*b)->head->next->final_idx)
+        swap(*b, "sb");
     sort_three(a);
     move_back_to_a(a, b);
-    // if ((*b)->head->value < (*b)->head->next->value)
-    //     swap(*b, "sb");
-    // while ((*b)->len != 0)
-    // {
-    //     push_to(*b, *a, "pa");
-    //     if ((*a)->head->value > (*a)->head->next->value)
-    //         swap(*a, "sa");
-    // }
 }
 // LSD sort; from the least significant bit to the most (max_bits - 1)
 // Explaination of how this sorting is possible:

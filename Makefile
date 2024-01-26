@@ -6,14 +6,14 @@
 #    By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 02:07:14 by alberrod          #+#    #+#              #
-#    Updated: 2024/01/23 02:32:19 by alberrod         ###   ########.fr        #
+#    Updated: 2024/01/26 02:10:29 by alberrod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC       = cc
 HEADERS_DIR = .
-CFLAGS   = -Wall -Wextra -Werror -fsanitize=address -g3 -I $(HEADERS_DIR) -I $(LIBFT)
+CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address -I $(HEADERS_DIR) -I $(LIBFT)
 NAME     = push_swap
 RM       = rm -rf
 

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/25 20:17:51 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 03:50:29 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ int main(int argc, char **argv)
 	stack_a = parse_input(argc, argv);
 	sorted_arr = sort_input(*stack_a);
 
+
+	if (is_sorted(stack_a))
+		return (0);
+
 	if (stack_a->len == 3)
 		sort_three(&stack_a);
 	
@@ -65,12 +69,7 @@ int main(int argc, char **argv)
 	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
 	if (stack_a->len == 5)
-	{
 		sort_five(&stack_a, &stack_b);
-		return 1;
-	}
-	// if (is_sorted(stack_a))
-	// 	return (0);
 	while (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
 
