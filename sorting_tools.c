@@ -6,13 +6,12 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:22:34 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 13:32:39 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 05:42:39 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Quicksort an array:
 static int	partitioner(int *arr, int lo, int hi)
 {
 	int	idx;

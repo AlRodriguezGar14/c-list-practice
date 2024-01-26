@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 03:50:29 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 06:43:27 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static int	find_value(int nbr, int *arr, int max_len)
 {
-    int	idx;
+	int	idx;
 
-    idx = 0;
+	idx = 0;
 	while (idx < max_len)
 	{
-		if (arr[idx] == nbr) 
+		if (arr[idx] == nbr)
 			return (idx);
 		idx++;
 	}
-    return idx;
+	return (idx);
 }
 
 void	assign_idx(t_dll **stack, int *arr)
@@ -41,46 +41,24 @@ void	assign_idx(t_dll **stack, int *arr)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_dll	*stack_a;
 	t_dll	*stack_b;
-	int		*sorted_arr = NULL;
+	int		*sorted_arr;
 
+	sorted_arr = NULL;
 	stack_b = new_dll();
 	stack_a = parse_input(argc, argv);
 	sorted_arr = sort_input(*stack_a);
-
-
 	if (is_sorted(stack_a))
 		return (0);
-
 	if (stack_a->len == 3)
 		sort_three(&stack_a);
-	
-	// pending when parse:
-	//		DONE: check that no number is duplicated
-	//		DONE: check that no chars are present in the input
-	//		DONE: check only "" or spaces are used as separator
-	// pending after parse:
-	// 		DONE: copy the content of stack_a to a integer array to sort it
-	//		DONE: map the indexes of the sorted array to the list
-
-	// test that the input has been properly parsed to the dll
 	assign_idx(&stack_a, sorted_arr);
 	if (stack_a->len == 5)
 		sort_five(&stack_a, &stack_b);
 	while (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
-
-	// t_node 	*curr;
-	// int idx = -1;
-	// curr = stack_a->head;
-	// while (++idx < stack_a->len)
-	// {
-	// 	printf("value:  %d  idx: %d\n", curr->value, curr->final_idx);
-	// 	curr = curr->next;
-	// }
-	// printf("len: %d\n", stack_a->len);
 	return (0);
 }

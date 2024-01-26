@@ -6,12 +6,12 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/25 18:51:45 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 06:52:49 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -62,7 +62,6 @@ void    radix_sort(t_dll **a, t_dll **b);
 // allowed functions
 	// p -> pa, pb
 	// send top of x to top of y
-// void	push_to(t_dll *from, t_dll *to, char *action);
 void	push_to(t_dll *from, t_dll *to, char *action);
 	// s -> sa sb ss
 	// swap top numbers
@@ -77,5 +76,10 @@ void	reverse_rotation(t_dll *bucket, char *action);
 // sorting tools
 void	quicksort(int *arr, int lo, int hi);
 int	is_sorted(t_dll *inp);
+
+// end with error
+void	ft_error_int(char *str, int	nbr);
+void	ft_error_str(char *str, char *err);
+void	ft_error(char *str);
 
 #endif

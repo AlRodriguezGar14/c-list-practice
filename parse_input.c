@@ -6,11 +6,12 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:10:33 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/23 20:49:11by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 07:12:45 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 static char	**parse_string(int argc, char **argv)
 {
@@ -30,10 +31,7 @@ static char	**parse_string(int argc, char **argv)
 		while (++idx < argc)
 		{
 			if (ft_strchr(argv[idx], ' '))
-			{
-				ft_printf("Input Error: space and \"\" separators used\n");
-				exit(1);
-			}
+				ft_error("Input Error: multiple separator types used");
 			input[++jdx] = ft_strdup(argv[idx]);
 		}
 	}
@@ -73,11 +71,7 @@ static	void	find_duplicates(int *arr, int len)
 			if (arr[idx] == arr[jdx++])
 				matches++;
 			if (matches == 2)
-			{
-				ft_printf("Input Error: duplicate numbers found: %d\n",
-					arr[idx]);
-				exit(1);
-			}
+				ft_error_int("Input Error: duplicate numbers found", arr[idx]);
 		}
 	}
 }
@@ -113,28 +107,19 @@ int	push_swap_atoi(const char *str)
 	while ((*str >= 9 && *str <= 13) || *str == ' ')
 		str++;
 	operator = 1;
-	if (*str == '-')
+	if ((*str == '-') || (*str == '+'))
 	{
-		operator *= -1;
-		str++;
+		if (*str++ == '-')
+			operator *= -1;
 	}
-	else if (*str == '+')
-		str++;
 	output = 0;
 	if (!ft_isdigit(*str))
-	{
-		ft_printf("Wrong input format or non-numeric input: %s\n", og);
-		exit(1);
-	}
+		ft_error_str("Wrong input format or non-numeric input", og);
 	while (ft_isdigit(*str))
-	{
-		output = output * 10 + (*str - '0');
-		str++;
-	}
+		output = output * 10 + (*str++ - '0');
 	if (*str != '\0')
-	{
-		ft_printf("Wrong input format or non-numeric input: %s\n", og);
-		exit(1);
-	}
+		ft_error_str("Wrong input format or non-numeric input", og);
+	if ((output * operator > INT_MAX) || (output * operator) < INT_MIN)
+		ft_error("Wrong input format: not all the numbers are integers");
 	return (output * operator);
 }
