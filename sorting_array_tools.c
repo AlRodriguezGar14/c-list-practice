@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_tools.c                                    :+:      :+:    :+:   */
+/*   sorting_array_tools.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:22:34 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 05:42:39 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/26 07:31:26 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	partitioner(int *arr, int lo, int hi)
 
 	idx = lo - 1;
 	pivot = arr[hi];
-
 	while (lo < hi)
 	{
 		if (arr[lo] <= pivot)
@@ -45,21 +44,20 @@ void	quicksort(int *arr, int lo, int hi)
 	if (lo >= hi)
 		return ;
 	pivot_idx = partitioner(arr, lo, hi);
-
 	quicksort(arr, pivot_idx + 1, hi);
 	quicksort(arr, lo, pivot_idx - 1);
-		
 }
 
 int	is_sorted(t_dll *stack)
 {
-	int	idx;
+	int		idx;
+	t_node	*curr;
 
-	t_node *curr = stack->head;
+	curr = stack->head;
 	idx = -1;
 	while (++idx < stack->len - 1)
 	{
-		if (curr->value >= curr->next->value)	
+		if (curr->value >= curr->next->value)
 			return (0);
 		curr = curr->next;
 	}

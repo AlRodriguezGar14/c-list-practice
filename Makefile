@@ -6,7 +6,7 @@
 #    By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 02:07:14 by alberrod          #+#    #+#              #
-#    Updated: 2024/01/26 07:18:07 by alberrod         ###   ########.fr        #
+#    Updated: 2024/01/26 07:30:32 by alberrod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM       = rm -rf
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
-CFILES = main.c sorting_tools.c stack_builder.c stack_functions.c \
+CFILES = main.c sorting_array_tools.c stack_builder.c stack_functions.c \
 		parse_input.c sort_stack.c exit_error.c sort_stack_utils.c
 
 OFILES = $(CFILES:.c=.o)
