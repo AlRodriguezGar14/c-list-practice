@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/27 12:33:14 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:55:06 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ int	main(int argc, char **argv)
 	sorted_arr = NULL;
 	stack_b = new_dll();
 	stack_a = parse_input(argc, argv);
-	sorted_arr = sort_input(*stack_a);
 	if (is_sorted(stack_a))
 		return (0);
 	if (stack_a->len == 3)
 		sort_three(&stack_a);
+	sorted_arr = sort_input(*stack_a);
 	assign_idx(&stack_a, sorted_arr);
+	free(sorted_arr);
 	if (stack_a->len == 5)
 		sort_five(&stack_a, &stack_b);
 	while (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
-	free(sorted_arr);
 	if (stack_b != NULL)
 		free_dll(&stack_b);
 	if (stack_a != NULL)
