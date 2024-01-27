@@ -54,13 +54,13 @@ int	main(int argc, char **argv)
 		return (0);
 	sorted_arr = sort_input(*stack_a);
 	assign_idx(&stack_a, sorted_arr);
-	free(sorted_arr);
 	if (stack_a->len == 3)
 		sort_three(&stack_a);
 	if (stack_a->len == 5)
 		sort_five(&stack_a, &stack_b);
 	while (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
+	free(sorted_arr);
 	if (stack_b != NULL)
 		free_dll(&stack_b);
 	if (stack_a != NULL)
