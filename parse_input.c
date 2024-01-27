@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:10:33 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 07:12:45 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:28:42 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_dll	*parse_input(int argc, char **argv)
 		append(stack, push_swap_atoi(input[idx]));
 		idx++;
 	}
+	free(input);
 	return (stack);
 }
 
@@ -121,5 +122,5 @@ int	push_swap_atoi(const char *str)
 		ft_error_str("Wrong input format or non-numeric input", og);
 	if ((output * operator > INT_MAX) || (output * operator) < INT_MIN)
 		ft_error("Wrong input format: not all the numbers are integers");
-	return (output * operator);
+	return (free(og), output * operator);
 }
