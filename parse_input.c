@@ -53,6 +53,7 @@ t_dll	*parse_input(int argc, char **argv)
 		free(input[idx]);
 		idx++;
 	}
+	free(input);
 	return (stack);
 }
 

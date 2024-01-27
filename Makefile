@@ -13,7 +13,7 @@
 
 CC       = cc
 HEADERS_DIR = .
-CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address -I $(HEADERS_DIR) -I $(LIBFT_DIR)
+CFLAGS   = -Wall -Wextra -Werror -g3 -I $(HEADERS_DIR) -I $(LIBFT_DIR)
 NAME     = push_swap
 RM       = rm -rf
 
