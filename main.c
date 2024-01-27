@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 06:43:27 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:15:11 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,9 @@ int	main(int argc, char **argv)
 		sort_five(&stack_a, &stack_b);
 	while (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
+	if (stack_b != NULL)
+		free_dll(&stack_b);
+	if (stack_a != NULL)
+		free_dll(&stack_a);
 	return (0);
 }

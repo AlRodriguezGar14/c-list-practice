@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 07:45:31 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:12:01 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int				push_swap_atoi(const char *str);
 // stack builder
 t_dll			*new_dll(void);
 t_node			*new_node(int value);
+void			free_dll(t_dll **dll);
 void			push(t_dll *bucket, t_node *node);
 t_node			*pull(t_dll *bucket);
 

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:54:27 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/26 07:36:58 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:17:45 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,27 @@ t_node	*pull(t_dll *bucket)
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
+}
+
+void	free_dll(t_dll **dll)
+{
+	t_node *curr;
+	t_node *next;
+	int		idx;
+	int		len;
+	
+	idx = 0;
+	len = (*dll)->len;
+	curr = (*dll)->head;
+	while ((idx++ < len) && curr != NULL)
+	{
+		next = curr->next;
+		free(curr);
+		if (next != NULL)
+			curr = next;
+		else
+			break;
+	}
+	free(*dll);
+	*dll = NULL;
 }
