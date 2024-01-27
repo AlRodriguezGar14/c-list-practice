@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:10:33 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/27 12:28:42 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:37:28 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ t_dll	*parse_input(int argc, char **argv)
 	while (input[idx])
 	{
 		append(stack, push_swap_atoi(input[idx]));
+		free(input[idx]);
 		idx++;
 	}
-	free(input);
 	return (stack);
 }
 
