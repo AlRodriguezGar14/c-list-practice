@@ -16,8 +16,8 @@ HEADERS_DIR = .
 CFLAGS   = -Wall -Wextra -Werror -g3 -I $(HEADERS_DIR) -I $(LIBFT_DIR)
 NAME     = push_swap
 RM       = rm -rf
-# CHECKER  = checker_linux
-CHECKER  = checker_Mac 
+CHECKER  = checker_linux
+# CHECKER  = checker_Mac 
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a

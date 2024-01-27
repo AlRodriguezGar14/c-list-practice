@@ -15,7 +15,7 @@
 void	ft_error_int(char *str, int nbr)
 {
 	ft_printf("%s: %d\n", str, nbr);
-	exit(1);
+	// exit(1);
 }
 
 void	ft_error_str(char *str, char *err)

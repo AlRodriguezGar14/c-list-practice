@@ -57,7 +57,7 @@ t_dll	*parse_input(int argc, char **argv)
 	return (stack);
 }
 
-static	void	find_duplicates(int *arr, int len)
+static	int	find_duplicates(int *arr, int len)
 {
 	int	idx;	
 	int	jdx;	
@@ -73,9 +73,13 @@ static	void	find_duplicates(int *arr, int len)
 			if (arr[idx] == arr[jdx++])
 				matches++;
 			if (matches == 2)
+			{
 				ft_error_int("Input Error: duplicate numbers found", arr[idx]);
+				return (1);
+			}
 		}
 	}
+	return (0);
 }
 
 int	*sort_input(t_dll stack)
@@ -83,7 +87,9 @@ int	*sort_input(t_dll stack)
 	int		*out;
 	int		idx;
 	t_node	*curr;
+	int		err;
 
+	err = 0;
 	out = (int *)malloc(stack.len * sizeof(int));
 	if (!out)
 		return (NULL);
@@ -94,7 +100,9 @@ int	*sort_input(t_dll stack)
 		out[idx++] = curr->value;
 		curr = curr->next;
 	}
-	find_duplicates(out, stack.len);
+	err = find_duplicates(out, stack.len);
+	if (err)
+		return (free(out), NULL);
 	quicksort(out, 0, (int)stack.len - 1);
 	return (out);
 }

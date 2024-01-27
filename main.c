@@ -46,20 +46,27 @@ int	main(int argc, char **argv)
 	t_dll	*stack_a;
 	t_dll	*stack_b;
 	int		*sorted_arr;
+	int		err;
 
+	err = 0;
 	sorted_arr = NULL;
 	stack_b = new_dll();
 	stack_a = parse_input(argc, argv);
 	if (is_sorted(stack_a))
 		return (0);
 	sorted_arr = sort_input(*stack_a);
-	assign_idx(&stack_a, sorted_arr);
-	if (stack_a->len == 3)
-		sort_three(&stack_a);
-	if (stack_a->len == 5)
-		sort_five(&stack_a, &stack_b);
-	while (!is_sorted(stack_a))
-		radix_sort(&stack_a, &stack_b);
+	if (!sorted_arr)
+		err = 1;
+	if (!err)
+	{
+		assign_idx(&stack_a, sorted_arr);
+		if (stack_a->len == 3)
+			sort_three(&stack_a);
+		if (stack_a->len == 5)
+			sort_five(&stack_a, &stack_b);
+		while (!is_sorted(stack_a))
+			radix_sort(&stack_a, &stack_b);
+	}
 	free(sorted_arr);
 	if (stack_b != NULL)
 		free_dll(&stack_b);
