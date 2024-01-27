@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42.urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/27 13:01:17 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/27 20:15:50 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,21 @@ int	main(int argc, char **argv)
 	t_dll	*stack_a;
 	t_dll	*stack_b;
 	int		*sorted_arr;
-	int		err;
 
-	err = 0;
 	sorted_arr = NULL;
-	stack_b = new_dll();
-	stack_a = parse_input(argc, argv);
-	if (is_sorted(stack_a))
-		return (0);
-	sorted_arr = sort_input(*stack_a);
-	if (!sorted_arr)
-		err = 1;
-	if (!err)
+	// stack_a = NULL;
+	// stack_b = NULL;
+	while (1)
 	{
+		stack_b = new_dll();
+		stack_a = parse_input(argc, argv);
+		if (!stack_a)
+			break ;
+		if (is_sorted(stack_a))
+			break ;
+		sorted_arr = sort_input(*stack_a);
+		if (!sorted_arr)
+			break ;
 		assign_idx(&stack_a, sorted_arr);
 		if (stack_a->len == 3)
 			sort_three(&stack_a);
@@ -66,11 +68,14 @@ int	main(int argc, char **argv)
 			sort_five(&stack_a, &stack_b);
 		while (!is_sorted(stack_a))
 			radix_sort(&stack_a, &stack_b);
+		break ;
 	}
-	free(sorted_arr);
+	if (sorted_arr)
+		free(sorted_arr);
 	if (stack_b != NULL)
 		free_dll(&stack_b);
 	if (stack_a != NULL)
 		free_dll(&stack_a);
+	printf("%d\n", *(int *)(__builtin_return_address(-1)));
 	return (0);
 }

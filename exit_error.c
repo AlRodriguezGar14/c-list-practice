@@ -22,11 +22,11 @@ void	ft_error_str(char *str, char *err)
 {
 	ft_printf("%s: %s\n", str, err);
 	free(err);
-	exit(1);
+	// exit(1);
 }
 
 void	ft_error(char *str)
 {
 	ft_printf("%s\n", str);
-	exit(1);
+	// exit(1);
 }
