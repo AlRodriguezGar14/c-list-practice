@@ -6,7 +6,7 @@
 #    By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 02:07:14 by alberrod          #+#    #+#              #
-#    Updated: 2024/01/28 16:44:56 by alberrod         ###   ########.fr        #
+#    Updated: 2024/01/28 17:09:12 by alberrod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,17 @@ RM       = rm -rf
 # CHECKER  = checker_linux
 CHECKER  = checker_Mac 
 
-LIBFT_DIR = libft/
+LIBFT_DIR = utils/
 LIBFT = $(LIBFT_DIR)libft.a
-CFILES = main.c sorting_array_tools.c stack_builder.c stack_functions.c \
-		parse_input.c sort_stack.c exit_error.c sort_stack_utils.c \
-		parse_input_utils.c
+CFILES = main.c \
+		sort/sorting_array_tools.c \
+		sort/sort_stack.c \
+		sort/sort_stack_utils.c \
+		stack_utils/stack_builder.c \
+		stack_utils/stack_functions.c \
+		parse/parse_input.c \
+		parse/parse_input_utils.c \
+		error/exit_error.c \
 
 OFILES = $(CFILES:.c=.o)
 
@@ -37,7 +43,7 @@ $(NAME): $(LIBFT) $(OFILES)
 
 # -C = execute the command in the following directory
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make fclean re -C $(LIBFT_DIR)
 clean:
 	$(RM) $(OFILES)
 	make clean -C $(LIBFT_DIR)
@@ -46,7 +52,6 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean $(NAME)
-
 
 test3: $(NAME)
 	@NUM=3; \

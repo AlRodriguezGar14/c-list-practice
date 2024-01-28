@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/28 16:47:21 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/28 17:05:22 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <time.h>
 # include <limits.h>
-# include "libft/libft.h"
+# include "utils/libft.h"
 
 typedef struct s_node
 {
