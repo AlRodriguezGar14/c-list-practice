@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 01:49:11 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/27 12:12:01 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/28 16:47:21 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
+# include <limits.h>
 # include "libft/libft.h"
 
 typedef struct s_node
@@ -37,6 +38,7 @@ typedef struct s_dll
 t_dll			*parse_input(int argc, char **argv);
 int				*sort_input(t_dll stack);
 int				push_swap_atoi(const char *str);
+void			free_str(char **str, int max_idx);
 
 // stack builder
 t_dll			*new_dll(void);
