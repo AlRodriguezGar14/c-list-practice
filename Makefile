@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alberrod <alberrod@student.42.urduliz.c    +#+  +:+       +#+         #
+#    By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 02:07:14 by alberrod          #+#    #+#              #
-#    Updated: 2024/01/27 20:10:19 by alberrod         ###   ########.fr        #
+#    Updated: 2024/01/28 00:54:31 by alberrod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ HEADERS_DIR = .
 CFLAGS   = -g -I $(HEADERS_DIR) -I $(LIBFT_DIR)
 NAME     = push_swap
 RM       = rm -rf
-CHECKER  = checker_linux
-# CHECKER  = checker_Mac 
+# CHECKER  = checker_linux
+CHECKER  = checker_Mac 
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -98,8 +98,8 @@ test500: $(NAME)
 	done; \
 	ARG="$${ARG[*]}"; \
 	echo "ARG: $$ARG"; \
-	./push_swap $$ARG | ./$(CHECKER) $$ARG && ./push_swap $$ARG | wc -l 
-
+	./push_swap $$ARG | ./$(CHECKER) $$ARG; \
+	 ./push_swap $$ARG | wc -l 
 
 .PHONY: all clean fclean re test3 test5 test100 test500
  
