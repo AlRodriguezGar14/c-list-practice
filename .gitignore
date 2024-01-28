@@ -5,3 +5,5 @@
 *.a
 push_swap
 .vscode
+checker_Mac
+checker_linux
