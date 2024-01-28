@@ -6,15 +6,15 @@
 #    By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 02:07:14 by alberrod          #+#    #+#              #
-#    Updated: 2024/01/28 00:54:31 by alberrod         ###   ########.fr        #
+#    Updated: 2024/01/28 03:40:28 by alberrod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC       = cc
 HEADERS_DIR = .
-# CFLAGS   = -Wall -Wextra -Werror -g -I $(HEADERS_DIR) -I $(LIBFT_DIR)
-CFLAGS   = -g -I $(HEADERS_DIR) -I $(LIBFT_DIR)
+CFLAGS   = -Wall -Wextra -Werror -g -fsanitize=address -I $(HEADERS_DIR) -I $(LIBFT_DIR)
+# CFLAGS   = -g -I $(HEADERS_DIR) -I $(LIBFT_DIR)
 NAME     = push_swap
 RM       = rm -rf
 # CHECKER  = checker_linux

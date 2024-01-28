@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:38:47 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/28 00:56:53 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/01/28 03:44:54 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ void	assign_idx(t_dll **stack, int *arr)
 	}
 }
 
+// static void	free_all(int *arr, t_dll **a, t_dll **b)
+// {
+// 	if (arr)
+// 		free(arr);
+// 	if (b != NULL)
+// 		free_dll(b);
+// 	if (a != NULL)
+// 		free_dll(a);
+
+// }
+
 int	main(int argc, char **argv)
 {
 	t_dll	*stack_a;
@@ -48,8 +59,6 @@ int	main(int argc, char **argv)
 	int		*sorted_arr;
 
 	sorted_arr = NULL;
-	// stack_a = NULL;
-	// stack_b = NULL;
 	while (1)
 	{
 		stack_b = new_dll();
@@ -76,5 +85,16 @@ int	main(int argc, char **argv)
 		free_dll(&stack_b);
 	if (stack_a != NULL)
 		free_dll(&stack_a);
+	// int maxlen = stack_a->len;
+	// t_node *curr = stack_a->head;
+	// int idx = 0;
+	// while (idx < maxlen)
+	// {
+	// 	ft_printf("%d ", curr->value);
+	// 	curr = curr->next;
+	// 	idx++;
+	// }
+	// free_all(sorted_arr, &stack_a, &stack_b);
+
 	return (0);
 }
